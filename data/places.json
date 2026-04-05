@@ -1,0 +1,74 @@
+{
+  "goa": [
+    "Baga Beach",
+    "Anjuna Beach",
+    "Calangute Beach",
+    "Fort Aguada",
+    "Dudhsagar Falls",
+    "Chapora Fort"
+  ],
+  "manali": [
+    "Solang Valley",
+    "Rohtang Pass",
+    "Hadimba Temple",
+    "Old Manali",
+    "Jogini Falls",
+    "Manu Temple"
+  ],
+  "jaipur": [
+    "Hawa Mahal",
+    "Amber Fort",
+    "City Palace",
+    "Jantar Mantar",
+    "Nahargarh Fort",
+    "Albert Hall Museum"
+  ],
+  "delhi": [
+    "India Gate",
+    "Red Fort",
+    "Qutub Minar",
+    "Lotus Temple",
+    "Humayun's Tomb",
+    "Akshardham Temple"
+  ],
+  "mumbai": [
+    "Gateway of India",
+    "Marine Drive",
+    "Elephanta Caves",
+    "Juhu Beach",
+    "Chhatrapati Shivaji Terminus",
+    "Bandra-Worli Sea Link"
+  ],
+  "kerala": [
+    "Alleppey Backwaters",
+    "Munnar Tea Gardens",
+    "Wayanad Hills",
+    "Kochi Fort",
+    "Varkala Beach",
+    "Periyar Wildlife Sanctuary"
+  ],
+  "ladakh": [
+    "Pangong Lake",
+    "Nubra Valley",
+    "Magnetic Hill",
+    "Leh Palace",
+    "Shanti Stupa",
+    "Khardung La Pass"
+  ],
+  "varanasi": [
+    "Kashi Vishwanath Temple",
+    "Dashashwamedh Ghat",
+    "Assi Ghat",
+    "Sarnath",
+    "Manikarnika Ghat",
+    "Ramnagar Fort"
+  ],
+  "kolkata": [
+    "Victoria Memorial",
+    "Howrah Bridge",
+    "Dakshineswar Kali Temple",
+    "Indian Museum",
+    "Park Street",
+    "Eco Park"
+  ]
+}
