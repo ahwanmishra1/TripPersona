@@ -1,45 +1,50 @@
 import streamlit as st
 from agents.crew import create_crew
+from agents.personality_engine import generate_personalities
+from memory import update_memory
 
 st.set_page_config(page_title="TRIPBUDDY ✈️", layout="centered")
 
 st.title("✈️ TRIPBUDDY")
-st.subheader("Your AI Travel Planner (Offline)")
+st.subheader("AI Travel Planner with Personalities")
 
-# Inputs
+source = st.text_input("🛫 Source", placeholder="e.g. Kolkata")
 destination = st.text_input("📍 Destination", placeholder="e.g. Goa")
-days = st.number_input("📅 Number of Days", min_value=1, max_value=30, value=3)
-budget = st.text_input("💰 Budget", placeholder="e.g. 10000")
 
-# Button
+days = st.number_input("📅 Days", 1, 30, 3)
+people = st.number_input("👨‍👩‍👧‍👦 People", 1, 10, 2)
+budget = st.number_input("💰 Budget (INR ₹)", min_value=1000, value=10000)
+
 if st.button("🚀 Generate Trip Plan"):
 
-    if not destination or not budget:
-        st.warning("Please fill all fields")
+    if not source or not destination:
+        st.warning("Fill all fields")
     else:
         with st.spinner("Planning your trip... ✨"):
 
-            crew = create_crew(destination, days, budget)
-            result = crew.kickoff()
+            crew = create_crew(source, destination, days, budget, people)
+            base_plan = crew.kickoff()
 
-            result_text = str(result)
+            personality_plans = generate_personalities(
+                base_plan, source, destination, people, budget
+            )
 
-            st.success("Trip Plan Ready! 🎉")
+        st.success("Trip Plans Ready! 🎉")
 
-            days = result_text.split("Day ")
+        for key, value in personality_plans.items():
+            with st.expander(f"{key.upper()} VERSION"):
+                st.markdown(value)
 
-            for day in days[1:]:
-                day_title = day.split("\n")[0]
-                content = "\n".join(day.split("\n")[1:])
-                
-                with st.expander(f"📅 Day {day_title}"):
-                    st.markdown(content)
+        # choice = st.radio("Choose your plan", ["chaotic", "planner", "local"])
 
-            # Optional sections
-            if "Hotel" in result_text:
-                st.markdown("## 🏨 Hotel Recommendation")
-                st.write(result_text.split("Hotel")[1])
+        # if st.button("✅ Confirm Plan"):
+        #     st.markdown("## 🎉 Final Itinerary")
+        #     st.markdown(personality_plans[choice])
 
-            if "Tips" in result_text:
-                st.markdown("## 💡 Travel Tips")
-                st.write(result_text.split("Tips")[1])
+# Feedback
+st.markdown("---")
+feedback = st.text_input("💬 Feedback (e.g., skip clubs, prefer beaches)")
+
+if st.button("Submit Feedback"):
+    update_memory(feedback)
+    st.success("Memory updated 🧠")

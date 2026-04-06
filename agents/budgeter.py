@@ -4,8 +4,8 @@ from llm.ollama_llm import get_llm
 def get_budget_agent():
     return Agent(
         role="Budget Analyst",
-        goal="Ensure the travel plan fits within budget",
-        backstory="Finance expert for travel planning",
+        goal="Optimize cost",
+        backstory="Cost optimization expert",
         llm=get_llm(),
         verbose=True
     )
