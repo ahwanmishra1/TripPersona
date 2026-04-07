@@ -1,7 +1,7 @@
 from crewai import Crew, Task
 from agents.researcher import get_research_agent
 from agents.planner import get_planner_agent
-from agents.budgeter import get_budget_agent
+from agents.budget import get_budget_agent
 
 def create_crew(source, destination, days, budget, people):
 

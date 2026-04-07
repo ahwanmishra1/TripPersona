@@ -1,32 +1,25 @@
-import ollama
-from utils.personalities import get_personality_prompt
-from memory import memory
+from llm.ollama_llm import get_llm
 
-def generate_personalities(base_plan, source, destination, people, budget):
+llm = get_llm()
 
-    personalities = ["chaotic", "planner", "local"]
-    outputs = {}
+def apply_personality(text):
 
-    for p in personalities:
-        prompt = get_personality_prompt(
-            p,
-            f"""
-Trip Context:
-From: {source}
-To: {destination}
-People: {people}
-Budget: ₹{budget}
+    prompt = f"""
+Rewrite this into 3 styles:
 
-{base_plan}
-""",
-            memory
-        )
+CHAOTIC:
+fun, spontaneous
 
-        response = ollama.chat(
-            model="llama3",
-            messages=[{"role": "user", "content": prompt}]
-        )
+PLANNER:
+structured
 
-        outputs[p] = response["message"]["content"]
+LOCAL:
+hidden gems
 
-    return outputs
+TEXT:
+{text}
+
+Separate clearly.
+"""
+
+    return llm.invoke(prompt)
