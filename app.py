@@ -18,6 +18,7 @@ st.markdown("""
     border-radius: 20px;
     color: white;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .search-box {
