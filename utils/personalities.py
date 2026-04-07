@@ -29,7 +29,6 @@ Rewrite this itinerary:
         return f"""
 You are a highly organized travel planner.
 
-- Add timings
 - Optimize routes
 - Keep structured format
 

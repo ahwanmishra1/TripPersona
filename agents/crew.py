@@ -10,17 +10,14 @@ def create_crew(source, destination, days, budget, people):
     budgeter = get_budget_agent()
 
     research_task = Task(
-        description=f"""
-Find top attractions in {destination}.
-Consider travel from {source}.
-""",
+        description=f"Find top attractions in {destination}",
         agent=researcher,
         expected_output="List of attractions"
     )
 
     planning_task = Task(
         description=f"""
-Create a {days}-day itinerary.
+Create a {days}-day travel itinerary.
 
 Trip Details:
 From: {source}
@@ -28,35 +25,39 @@ To: {destination}
 People: {people}
 Budget: ₹{budget}
 
-RULES:
-- All costs in INR (₹)
-- Include travel from {source} to {destination}
-- Include per-person cost
+FORMAT (important but flexible):
 
-FORMAT:
+For each day include:
+- Morning activity
+- Afternoon activity
+- Evening activity
+- Cost in INR
+
+Example:
 
 Day 1:
-- Activity
-- Cost: ₹XXX
+Morning: Beach visit
+Afternoon: Lunch + sightseeing
+Evening: Dinner
+Cost: ₹1500
 
-Include:
-Transport Plan
-Hotel Recommendation
-Total Cost (INR)
-Cost Per Person
-Travel Tips
+FINAL SUMMARY:
+Total Cost: ₹XXXX
+Cost Per Person: ₹XXXX
+
+RULES:
+- Always include Day-wise breakdown
+- Always include cost per day
+- Keep it structured and readable
 """,
         agent=planner,
         expected_output="Structured itinerary"
     )
 
     budget_task = Task(
-        description=f"""
-Optimize the itinerary within ₹{budget} for {people} people.
-Suggest cheaper alternatives if needed.
-""",
+        description=f"Ensure the plan fits within ₹{budget}",
         agent=budgeter,
-        expected_output="Optimized budget plan"
+        expected_output="Optimized budget"
     )
 
     crew = Crew(
